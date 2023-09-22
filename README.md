@@ -201,3 +201,5 @@ the Blog, or through the Savoir Technologies website at
 
 Thank you to Andrea Piacquadio for the awesome stock photo:
 <https://www.pexels.com/photo/woman-in-white-long-sleeve-shirt-using-silver-laptop-computer-3784324/>
+
+\(c\) 2023 Savoir Technologies
