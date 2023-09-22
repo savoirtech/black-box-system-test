@@ -1,15 +1,15 @@
-= Don't Wire your Application More than Once for Testing
+== Don't Wire your Application More than Once for Testing
 
 image::./assets/pexels/pexels-andrea-piacquadio-3784324.jpg[]
 
 
-== Do you Wire your Application More than Once?
+=== Do you Wire your Application More than Once?
 
 Do you use `@SpringBootTest`?  How about `@ContextConfiguration`?  Then, yes - you are wiring your Application for testing.  Remember the amount of time and effort it took to get the application wired in the first place?  Now imagine doing it again.  And again.  Having potentially many differently wired results, each focused on a specific test scenario.
 
 What if I told you there's an easier and better way?
 
-== DO Black Box Automation Testing at Build Time
+=== DO Black Box Automation Testing at Build Time
 
 Black-box testing of the entire application, also referred to as System Integration & Test once-upon-a-time, has the benefit of running the full application as it will be deployed and run in production, with external dependencies (databases, messaging systems, rest services, etc.) being satisfied with test instances.  If you are thinking of "TEST ENVIRONMENT 12," let's talk.  There's a better way.
 
@@ -32,7 +32,7 @@ So how do you run it?
 
 
 
-== Why?
+=== Why?
 
 Grey-box tests, which involve some amount of exposed internals of a system, and some amount of testing through the integrated layers pieced together, lead to the following challenges:
 
@@ -43,7 +43,7 @@ Grey-box tests, which involve some amount of exposed internals of a system, and 
 * Slow Integration Tests - as developer after developer writes additional tests, the startup and shutdown time for each grows the overall time to test the entire application
 ** ActiveMQ has suffered from this problem and is a key motivation for this Author to avoid the same fate
 
-== Isn't it Slow?
+=== Isn't it Slow?
 
 Relative to a local build without integration tests, yes.  Relative to a local build with a large number of grey-box tests, no - this is much faster because there is no need to repeatedly spin up and shut down the application.  Also, comparing build time to external tests, these tests are much faster because the focus isn't a full regression suite.  Instead, the focus is on functional testing of the system, and ensuring that obvious impediments to running the application are not introduced.
 
@@ -59,11 +59,11 @@ Here are tips to get the most value:
 * Focus the tests on System Integration Tests - making sure the fully-integrated system is functional, and no critical, obvious parts were broken.
 * Maintain a separate set of end-to-end tests integrating this System/Service/Application with others.
 
-== Added Benefit - Tests Double as a Reference Use-Case
+=== Added Benefit - Tests Double as a Reference Use-Case
 
 Anyone wanting to understand better how the System is used, such as what settings are needed, and how they can be configured correctly, can refer to these tests for a working example.  In addition, reproducing failures is simple because the test environment is cleanly packaged in docker containers.
 
-== Additional Tips
+=== Additional Tips
 
 ===== Cucumber
 Use Cucumber to write and maintain the tests.  The added readability of the tests and reports, as well as the reuse of step definitions, is valuable.
@@ -71,14 +71,14 @@ Use Cucumber to write and maintain the tests.  The added readability of the test
 ===== Lightweight Tests
 Keep the test code lightweight - the tests don't need to cover all the possible failure conditions gracefully because developers will be looking at the failures and diagnosing them.  This helps greatly reduce the time and effort to write and maintain the tests while only very slightly reducing the ease with which a failure can be diagnosed.
 
-== See it in Action
+=== See it in Action
 
 At OpenNMS, we built this test flow in the Lokahi (aka Horizon Stream) project.  The entire project is opensource, and available on GithHub here: https://github.com/OpenNMS-Cloud/lokahi.
 
 Here is a direct link to one of the `docker-it` modules that runs the black-box tests: https://github.com/OpenNMS-Cloud/lokahi/tree/develop/minion-gateway/docker-it.
 
 
-== Who is the Author
+=== Who is the Author
 
 Arthur Naseef.
 
@@ -92,7 +92,7 @@ Arthur is not shy to dig deep into internals - of third-party packages, O/S oper
 
 Besides consulting work, you can see some of Arthur's efforts at work at Playful Digital Learning where he builds the technology that powers the business, including PDLCode, which enables early coders to learn by coding Minecraft in-game interactions.
 
-=== My Philosophy
+==== My Philosophy
 
 Wiring cool code was fun in the past.  But now, I strive to only write code that actually provides value - automating business-needs, automating the development process to speed development, applying best-practices, working tech debt out of solutions, and so on.
 

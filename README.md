@@ -1,7 +1,11 @@
-![pexels andrea piacquadio
-3784324](./assets/pexels/pexels-andrea-piacquadio-3784324.jpg)
+# Don’t Wire your Application More than Once for Testing
 
-# Do you Wire your Application More than Once?
+<figure>
+<img src="./assets/pexels/pexels-andrea-piacquadio-3784324.jpg"
+alt="pexels andrea piacquadio 3784324" />
+</figure>
+
+## Do you Wire your Application More than Once?
 
 Do you use `@SpringBootTest`? How about `@ContextConfiguration`? Then,
 yes - you are wiring your Application for testing. Remember the amount
@@ -11,7 +15,7 @@ differently wired results, each focused on a specific test scenario.
 
 What if I told you there’s an easier and better way?
 
-# DO Black Box Automation Testing at Build Time
+## DO Black Box Automation Testing at Build Time
 
 Black-box testing of the entire application, also referred to as System
 Integration & Test once-upon-a-time, has the benefit of running the full
@@ -22,61 +26,60 @@ satisfied with test instances. If you are thinking of "TEST ENVIRONMENT
 
 Imagine the following in your toolbelt:
 
-  - Docker
+- Docker
 
-  - Tooling to Spin Up, Shut Down, and Clean up Docker Containers during
-    Integration Testing
-    
-      - Test Containers, OR
-    
-      - docker-maven-plugin (io.fabric8)
+- Tooling to Spin Up, Shut Down, and Clean up Docker Containers during
+  Integration Testing
 
-  - Docker Images
-    
-      - Application
-    
-      - Database
-        
-          - Test Init SQL File
-    
-      - Messaging Middleware
-    
-      - WireMock Rest Services
+  - Test Containers, OR
+
+  - docker-maven-plugin (io.fabric8)
+
+- Docker Images
+
+  - Application
+
+  - Database
+
+    - Test Init SQL File
+
+  - Messaging Middleware
+
+  - WireMock Rest Services
 
 So how do you run it?
 
     $ mvn clean install
 
-# Why?
+## Why?
 
 Grey-box tests, which involve some amount of exposed internals of a
 system, and some amount of testing through the integrated layers pieced
 together, lead to the following challenges:
 
-  - *Hard to Maintain* - focusing tests on an unclear Subsection of the
-    Application leads to confusing, hard-to-maintain test code. You know
-    this one when looking at a test and having trouble figuring out just
-    what it is testing, and/or how it is testing it.
+- *Hard to Maintain* - focusing tests on an unclear Subsection of the
+  Application leads to confusing, hard-to-maintain test code. You know
+  this one when looking at a test and having trouble figuring out just
+  what it is testing, and/or how it is testing it.
 
-  - *Flaky Tests*
-    
-      - Often the internals that the test depends on are unclear, and
-        over time workarounds can lead to integration tests breaking in
-        non-obvious ways
-    
-      - *False Results* - in addition these tests sometimes rely on
-        internal timings that lead to false-positives and
-        false-negatives; if you find yourself wanting to write `sleep()`
-        in a test, …​
+- *Flaky Tests*
 
-  - Slow Integration Tests - as developer after developer writes
-    additional tests, the startup and shutdown time for each grows the
-    overall time to test the entire application
-    
-      - ActiveMQ has suffered from this problem and is a key motivation
-        for this Author to avoid the same fate
+  - Often the internals that the test depends on are unclear, and over
+    time workarounds can lead to integration tests breaking in
+    non-obvious ways
 
-# Isn’t it Slow?
+  - *False Results* - in addition these tests sometimes rely on internal
+    timings that lead to false-positives and false-negatives; if you
+    find yourself wanting to write `sleep()` in a test, …​
+
+- Slow Integration Tests - as developer after developer writes
+  additional tests, the startup and shutdown time for each grows the
+  overall time to test the entire application
+
+  - ActiveMQ has suffered from this problem and is a key motivation for
+    this Author to avoid the same fate
+
+## Isn’t it Slow?
 
 Relative to a local build without integration tests, yes. Relative to a
 local build with a large number of grey-box tests, no - this is much
@@ -94,24 +97,24 @@ quickly fail with an error such as:
 
 Here are tips to get the most value:
 
-  - Enable these tests to be bypassed easily via mvn profile or property
-    so developers can cycle through multiple builds without the full
-    suite of tests
+- Enable these tests to be bypassed easily via mvn profile or property
+  so developers can cycle through multiple builds without the full suite
+  of tests
 
-  - Run these tests in the build pipeline that automatically executes on
-    commit
+- Run these tests in the build pipeline that automatically executes on
+  commit
 
-  - Encourage developers to run the full suite of tests immediately
-    before pushing commits.
+- Encourage developers to run the full suite of tests immediately before
+  pushing commits.
 
-  - Focus the tests on System Integration Tests - making sure the
-    fully-integrated system is functional, and no critical, obvious
-    parts were broken.
+- Focus the tests on System Integration Tests - making sure the
+  fully-integrated system is functional, and no critical, obvious parts
+  were broken.
 
-  - Maintain a separate set of end-to-end tests integrating this
-    System/Service/Application with others.
+- Maintain a separate set of end-to-end tests integrating this
+  System/Service/Application with others.
 
-# Added Benefit - Tests Double as a Reference Use-Case
+## Added Benefit - Tests Double as a Reference Use-Case
 
 Anyone wanting to understand better how the System is used, such as what
 settings are needed, and how they can be configured correctly, can refer
@@ -119,15 +122,15 @@ to these tests for a working example. In addition, reproducing failures
 is simple because the test environment is cleanly packaged in docker
 containers.
 
-# Additional Tips
+## Additional Tips
 
-## Cucumber
+### Cucumber
 
 Use Cucumber to write and maintain the tests. The added readability of
 the tests and reports, as well as the reuse of step definitions, is
 valuable.
 
-## Lightweight Tests
+### Lightweight Tests
 
 Keep the test code lightweight - the tests don’t need to cover all the
 possible failure conditions gracefully because developers will be
@@ -135,7 +138,7 @@ looking at the failures and diagnosing them. This helps greatly reduce
 the time and effort to write and maintain the tests while only very
 slightly reducing the ease with which a failure can be diagnosed.
 
-# See it in Action
+## See it in Action
 
 At OpenNMS, we built this test flow in the Lokahi (aka Horizon Stream)
 project. The entire project is opensource, and available on GithHub
@@ -145,7 +148,7 @@ Here is a direct link to one of the `docker-it` modules that runs the
 black-box tests:
 <https://github.com/OpenNMS-Cloud/lokahi/tree/develop/minion-gateway/docker-it>.
 
-# Who is the Author
+## Who is the Author
 
 Arthur Naseef.
 
@@ -175,7 +178,7 @@ Playful Digital Learning where he builds the technology that powers the
 business, including PDLCode, which enables early coders to learn by
 coding Minecraft in-game interactions.
 
-## My Philosophy
+### My Philosophy
 
 Wiring cool code was fun in the past. But now, I strive to only write
 code that actually provides value - automating business-needs,
