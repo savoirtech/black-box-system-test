@@ -1,9 +1,8 @@
 # Don’t Wire your Application More than Once for Testing
 
 <figure>
-<img
-src="https://www.pexels.com/photo/woman-in-white-long-sleeve-shirt-using-silver-laptop-computer-3784324"
-alt="woman in white long sleeve shirt using silver laptop computer 3784324" />
+<img src="./assets/3rdparty/pexels/pexels-andrea-piacquadio-3784324.jpg"
+alt="pexels andrea piacquadio 3784324" />
 </figure>
 
 ## Do you Wire your Application More than Once?

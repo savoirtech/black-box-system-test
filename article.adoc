@@ -1,7 +1,6 @@
 == Don't Wire your Application More than Once for Testing
 
-image::https://images.pexels.com/photos/3784324/pexels-photo-3784324.jpeg?auto=compress&cs=tinysrgb&w=768&dpr=1[]
-
+image::./assets/3rdparty/pexels/pexels-andrea-piacquadio-3784324.jpg[]
 
 === Do you Wire your Application More than Once?
 
