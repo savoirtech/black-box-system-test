@@ -141,8 +141,9 @@ slightly reducing the ease with which a failure can be diagnosed.
 ## See it in Action
 
 At OpenNMS, we built this test flow in the Lokahi (aka Horizon Stream)
-project. The entire project is opensource, and available on GithHub
-here: <https://github.com/OpenNMS-Cloud/lokahi>.
+project. The entire project is opensource, and available on GithHub at
+the fork here:
+<https://github.com/OpenNMS-Cloud/lokahi](https://github.com/artnaseef/horizon-stream>.
 
 Here is a direct link to one of the `docker-it` modules that runs the
 black-box tests:
